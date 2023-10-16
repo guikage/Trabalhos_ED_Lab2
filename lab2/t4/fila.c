@@ -10,7 +10,7 @@ Fila *cria_fila(void){
     return fila;
 }
 
-void entrar_fila(Fila *fila, int pessoas){
+int entrar_fila(Fila *fila, int pessoas){
     //recebe a fila e o numero de pessoas que vao entrar na fila
     Lista *n = (Lista*)malloc(sizeof(Lista));
     n->pessoas = pessoas;
@@ -24,6 +24,8 @@ void entrar_fila(Fila *fila, int pessoas){
         fila->fim->prox = n;
         fila->fim = n;
     }
+
+    return n->senha;
 }
 
 void desistir_fila(Fila *fila, int senha){
@@ -45,7 +47,7 @@ void desistir_fila(Fila *fila, int senha){
     } 
 }
 
-int chamar_primeiro_fila(Fila *fila){
+int retirar_pessoas_da_fila(Fila *fila){
     //recebe a fila
     //retorna o numero de pessoas chamadas
     

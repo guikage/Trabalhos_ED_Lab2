@@ -1,22 +1,30 @@
 #ifndef _fila_
 #define _fila_
 
-struct lista{
-    int senha;
-    int pessoas;
-    struct lista *prox;
-};
-typedef struct lista Lista;
+#include <stdbool.h>
 
-struct fila{
-    Lista *ini;
-    Lista *fim;
-};
+typedef struct grupo Grupo;
 typedef struct fila Fila;
 
-Fila *cria_fila(void);
-void entrar_fila(Fila *fila, int pessoas);
-void desistir_fila(Fila *fila, int senha);
-int chamar_primeiro_fila(Fila *fila);
+struct grupo {
+    int senha;
+    int pessoas;
+    struct grupo *prox;
+};
+
+struct fila {
+    Grupo *ini;
+    Grupo *fim;
+};
+
+Fila *criar_fila(void);
+
+int entrar_na_fila(Fila *fila, int pessoas);
+void desistir_da_fila(Fila *fila, int senha);
+
+int retirar_pessoas_da_fila(Fila *fila, int pessoas);
+
+bool fila_vazia(Fila *fila);
+
 
 #endif
