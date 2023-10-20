@@ -16,7 +16,9 @@ Mesa *distribui_mesas(int m, int n){
     }
 }
 
-int preenche_mesa(Mesa *mesas, int m, int n, int pessoas){
+Mesa *encontra_mesa
+
+int preenche_mesa(Mesa *mesa, int m, int n, int pessoas){
     //recebe a matriz de mesas, o tamanho (m e n) e o numero de pessoas de um grupo
     //retorna quantas pessoas sobraram do grupo
     //se todas pessoas do grupo puderam sentar, retorna 0
@@ -26,13 +28,13 @@ int preenche_mesa(Mesa *mesas, int m, int n, int pessoas){
         if(mesas[i].disponivel) break;
     }
     if(i == m * n) return pessoas;
-    mesas[i].disponivel = false;
-    mesas[i].comanda = mesas[i].numero;
+    mesa->disponivel = false;
+    mesas->comanda = mesas[i].numero;
     if(pessoas <= 4){
-        mesas[i].pessoas = pessoas;
+        mesa->pessoas = pessoas;
         return 0;
     }
-    mesas[i].pessoas = 4;
+    mesa->pessoas = 4;
     return pessoas - 4;
 }
 

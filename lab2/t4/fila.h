@@ -18,13 +18,9 @@ struct fila {
 };
 
 Fila *criar_fila(void);
-
 int entrar_na_fila(Fila *fila, int pessoas);
 void desistir_da_fila(Fila *fila, int senha);
-
 int retirar_pessoas_da_fila(Fila *fila, int pessoas);
-
 bool fila_vazia(Fila *fila);
-
 
 #endif

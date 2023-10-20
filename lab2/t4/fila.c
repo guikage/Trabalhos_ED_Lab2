@@ -10,9 +10,9 @@ Fila *cria_fila(void){
     return fila;
 }
 
-int entrar_fila(Fila *fila, int pessoas){
+int entrar_na_fila(Fila *fila, int pessoas){
     //recebe a fila e o numero de pessoas que vao entrar na fila
-    Lista *n = (Lista*)malloc(sizeof(Lista));
+    Grupo *n = (Grupo*)malloc(sizeof(Grupo));
     n->pessoas = pessoas;
     n->prox = NULL;
     if(fila->fim == NULL){
@@ -28,10 +28,10 @@ int entrar_fila(Fila *fila, int pessoas){
     return n->senha;
 }
 
-void desistir_fila(Fila *fila, int senha){
+void desistir_da_fila(Fila *fila, int senha){
     //recebe a fila e a senha do grupo que desistiu de esperar
-    Lista *p = fila->ini;
-    Lista *ant = NULL;
+    Grupo *p = fila->ini;
+    Grupo *ant = NULL;
     while(p != NULL && p->senha != senha){
         ant = p;
         p = p->prox;
@@ -47,19 +47,24 @@ void desistir_fila(Fila *fila, int senha){
     } 
 }
 
-int retirar_pessoas_da_fila(Fila *fila){
+int retirar_pessoas_da_fila(Fila *fila, int pessoas){
     //recebe a fila
     //retorna o numero de pessoas chamadas
     
     int n = 0;
     if(fila->ini != NULL){
-        if(fila->ini->pessoas <= 4){
+        if(fila->ini->pessoas <= pessoas){
             n = fila->ini->pessoas;
             fila->ini = fila->ini->prox;
         } else {
-            n = 4;
-            fila->ini->pessoas -= 4;
+            n = pessoas;
+            fila->ini->pessoas -= pessoas;
         }
     }
     return n;
+}
+
+bool fila_vazia(Fila *fila){
+    if(fila->ini == NULL && fila->fim == NULL) return true;
+    return false;
 }

@@ -22,5 +22,6 @@ struct salao {
 
 Salao *criar_salao(int linhas, int colunas);
 Mesa *encontrar_mesa_disponivel(Salao *salao);
+Mesa *encontrar_mesa_por_numero(Salao *salao, int numero);
 
 #endif

@@ -1,4 +1,5 @@
 #include "restaurante.h"
+#include <stdlib.h>
 
 Restaurante *criar_restaurante(int linhas, int colunas) {
     Restaurante *restaurante = (Restaurante *)malloc(sizeof(Restaurante));
@@ -8,6 +9,15 @@ Restaurante *criar_restaurante(int linhas, int colunas) {
     restaurante->prox_comanda = 1;
 
     return restaurante;
+}
+
+void ocupar_mesa(Restaurante *restaurante, Mesa *mesa, int pessoas) {
+    mesa->ocupantes = pessoas;
+    mesa->comanda = restaurante->prox_comanda++;
+    mesa->arrumada = false;
+    mesa->disponivel = false;
+
+    restaurante->pratos = empilhar_pratos(restaurante->pratos, LUGARES_POR_MESA - pessoas);
 }
 
 void chegar_ao_restaurante(Restaurante *restaurante, int pessoas) {
@@ -63,11 +73,3 @@ void chamar_da_fila_de_espera(Restaurante *restaurante, Mesa *mesa) {
     }
 }
 
-void ocupar_mesa(Restaurante *restaurante, Mesa *mesa, int pessoas) {
-    mesa->ocupantes = pessoas;
-    mesa->comanda = restaurante->prox_comanda++;
-    mesa->arrumada = false;
-    mesa->disponivel = false;
-
-    restaurante->pratos = empilhar_pratos(restaurante->pratos, LUGARES_POR_MESA - pessoas);
-}
