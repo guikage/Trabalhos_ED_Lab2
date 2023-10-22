@@ -11,7 +11,7 @@ struct mesa {
     int ocupantes;
     int comanda;
     bool arrumada;
-    bool disponivel;
+    bool vaga;
 };
 
 struct salao {

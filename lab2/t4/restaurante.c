@@ -15,7 +15,7 @@ void ocupar_mesa(Restaurante *restaurante, Mesa *mesa, int pessoas) {
     mesa->ocupantes = pessoas;
     mesa->comanda = restaurante->prox_comanda++;
     mesa->arrumada = false;
-    mesa->disponivel = false;
+    mesa->vaga = false;
 
     restaurante->pratos = empilhar_pratos(restaurante->pratos, LUGARES_POR_MESA - pessoas);
 }
@@ -46,7 +46,7 @@ void chegar_ao_restaurante(Restaurante *restaurante, int pessoas) {
 }
 
 void liberar_mesa(Restaurante *restaurante, Mesa *mesa) {
-    mesa->disponivel = true;
+    mesa->vaga = true;
     arrumar_mesa(restaurante, mesa);
 }
 
