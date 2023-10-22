@@ -1,5 +1,5 @@
-#ifndef _mesas_
-#define _mesas_
+#ifndef _salao_
+#define _salao_
 
 #include <stdbool.h>
 
@@ -17,11 +17,13 @@ struct mesa {
 struct salao {
     int linhas;
     int colunas;
-    Mesa *mesa;
+    Mesa *mesas;
 };
 
 Salao *criar_salao(int linhas, int colunas);
 Mesa *encontrar_mesa_disponivel(Salao *salao);
 Mesa *encontrar_mesa_por_numero(Salao *salao, int numero);
+void imprimir_salao(Salao *salao);
+void imprimir_mesa(Mesa *mesa);
 
 #endif
