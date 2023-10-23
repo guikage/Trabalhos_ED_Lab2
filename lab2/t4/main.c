@@ -10,6 +10,7 @@ int main() {
 
     Restaurante *restaurante = criar_restaurante(linhas, colunas);
     menu(restaurante);
+    desalocar_restaurante(restaurante);
 
     return 0;
 }

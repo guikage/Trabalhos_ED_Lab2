@@ -18,6 +18,7 @@ struct fila {
 };
 
 Fila *criar_fila();
+void desalocar_fila(Fila *fila);
 int entrar_na_fila(Fila *fila, int pessoas);
 int retirar_pessoas_da_fila(Fila *fila, int pessoas);
 bool sair_da_fila(Fila *fila, int senha);

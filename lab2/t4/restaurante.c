@@ -14,6 +14,13 @@ Restaurante *criar_restaurante(int linhas, int colunas) {
     return restaurante;
 }
 
+void desalocar_restaurante(Restaurante *restaurante){
+    desalocar_salao(restaurante->salao);
+    desalocar_pilha_de_pratos(restaurante->pratos);
+    desalocar_fila(restaurante->fila);
+    free(restaurante);
+}
+
 void ocupar_mesa(Restaurante *restaurante, Mesa *mesa, int pessoas) {
     mesa->ocupantes = pessoas;
     mesa->comanda = restaurante->prox_comanda++;

@@ -21,6 +21,7 @@ struct restaurante {
 };
 
 Restaurante *criar_restaurante(int linhas, int colunas);
+void desalocar_restaurante(Restaurante *restaurante);
 void chegar_ao_restaurante(Restaurante *restaurante, int pessoas);
 bool liberar_mesa(Restaurante *restaurante, Mesa *mesa);
 bool arrumar_mesa(Restaurante *restaurante, Mesa *mesa);

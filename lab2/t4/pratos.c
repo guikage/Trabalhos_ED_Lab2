@@ -5,6 +5,15 @@ Prato *criar_pilha_de_pratos(void){
     return NULL;
 }
 
+void desalocar_pilha_de_pratos(Prato *pilha){
+    Prato *ant = NULL;
+    while(pilha != NULL){
+        ant = pilha;
+        pilha = pilha->prox;
+        free(ant);
+    }
+}
+
 Prato *empilhar_prato(Prato *pilha){
     Prato *p = (Prato*)malloc(sizeof(Prato));
     p->prox = pilha;

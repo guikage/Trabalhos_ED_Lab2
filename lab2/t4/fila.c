@@ -10,6 +10,17 @@ Fila *criar_fila(void){
     return fila;
 }
 
+void desalocar_fila(Fila *fila){
+    Grupo *p = fila->ini;
+    Grupo *ant = NULL;
+    while(p != NULL){
+        ant = p;
+        p = p->prox;
+        free(ant);
+    }
+    free(fila);
+}
+
 int entrar_na_fila(Fila *fila, int pessoas){
     //recebe a fila e o numero de pessoas que vao entrar na fila
     Grupo *n = (Grupo*)malloc(sizeof(Grupo));
@@ -68,7 +79,6 @@ bool sair_da_fila(Fila *fila, int senha){
             fila->fim = ant;
         }
     }
-
     free(p);
     return 1;
 }

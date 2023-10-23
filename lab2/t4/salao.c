@@ -17,6 +17,11 @@ Salao *criar_salao(int linhas, int colunas){
     return salao;
 }
 
+void desalocar_salao(Salao *salao){
+    free(salao->mesas);
+    free(salao);
+}
+
 Mesa *encontrar_mesa_disponivel(Salao *salao){
     for(int i = 0; i < salao->linhas * salao->colunas; i++){
         if(salao->mesas[i].vaga && salao->mesas[i].arrumada) return &salao->mesas[i];

@@ -21,6 +21,7 @@ struct salao {
 };
 
 Salao *criar_salao(int linhas, int colunas);
+void desalocar_salao(Salao *salao);
 Mesa *encontrar_mesa_disponivel(Salao *salao);
 Mesa *encontrar_mesa_por_numero(Salao *salao, int numero);
 void imprimir_salao(Salao *salao);

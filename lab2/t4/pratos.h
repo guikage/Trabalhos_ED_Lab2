@@ -5,6 +5,7 @@ struct prato {
 };
 
 Prato *criar_pilha_de_pratos();
+void desalocar_pilha_de_pratos(Prato *pilha);
 
 Prato *empilhar_prato(Prato *pilha);
 Prato *desempilhar_prato(Prato *pilha);
