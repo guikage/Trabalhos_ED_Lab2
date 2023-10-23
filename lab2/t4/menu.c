@@ -96,11 +96,10 @@ void opcao_desistir_de_esperar(Restaurante *restaurante) {
     printf("- Qual a senha do grupo? ");
     scanf("%d", &senha);
 
-    if (!esta_na_fila(restaurante->fila, senha)) {
+    if (!sair_da_fila(restaurante->fila, senha)) {
         printf("• O grupo %d não está na fila de espera.\n", senha);
         return;
     }
-
     printf("• O grupo %d foi retirado da fila.\n", senha);
 }
 

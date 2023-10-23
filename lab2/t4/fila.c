@@ -45,7 +45,7 @@ int retirar_pessoas_da_fila(Fila *fila, int pessoas){
     return n;
 }
 
-void sair_da_fila(Fila *fila, int senha){
+bool sair_da_fila(Fila *fila, int senha){
     //recebe a fila e a senha do grupo que desistiu de esperar
     Grupo *p = fila->ini;
     Grupo *ant = NULL;
@@ -54,7 +54,7 @@ void sair_da_fila(Fila *fila, int senha){
         p = p->prox;
     }
     if(p == NULL){
-        return;
+        return 0;
     }
 
     if(ant == NULL){
@@ -70,6 +70,7 @@ void sair_da_fila(Fila *fila, int senha){
     }
 
     free(p);
+    return 1;
 }
 
 bool esta_na_fila(Fila *fila, int senha) {

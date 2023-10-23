@@ -20,7 +20,7 @@ struct fila {
 Fila *criar_fila();
 int entrar_na_fila(Fila *fila, int pessoas);
 int retirar_pessoas_da_fila(Fila *fila, int pessoas);
-void sair_da_fila(Fila *fila, int senha);
+bool sair_da_fila(Fila *fila, int senha);
 bool esta_na_fila(Fila *fila, int senha);
 bool fila_vazia(Fila *fila);
 void imprimir_fila(Fila *fila);
