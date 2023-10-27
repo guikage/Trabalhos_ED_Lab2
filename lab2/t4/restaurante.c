@@ -27,7 +27,12 @@ void ocupar_mesa(Restaurante *restaurante, Mesa *mesa, int pessoas) {
     mesa->arrumada = false;
     mesa->vaga = false;
 
-    restaurante->pratos = empilhar_pratos(restaurante->pratos, LUGARES_POR_MESA - pessoas);
+    int excedentes = LUGARES_POR_MESA - pessoas;
+
+    if (excedentes > 0) {
+        restaurante->pratos = empilhar_pratos(restaurante->pratos, excedentes);
+        printf("• %d pratos limpos excedentes foram retirados da mesa %d.\n", excedentes, mesa->numero);
+    }
 }
 
 void chegar_ao_restaurante(Restaurante *restaurante, int pessoas) {
@@ -74,12 +79,12 @@ bool arrumar_mesa(Restaurante *restaurante, Mesa *mesa) {
     }
 
     if (!mesa->vaga) {
-        printf("• A mesa não podê ser arrumada, pois está ocupada no momento.\n");\
+        printf("• A mesa não pôde ser arrumada, pois está ocupada no momento.\n");\
         return false;
     }
 
     if (contar_pratos(restaurante->pratos) < LUGARES_POR_MESA) {
-        printf("• A mesa não podê ser arrumada, pois não existem pratos suficientes na pilha.\n");
+        printf("• A mesa não pôde ser arrumada, pois não existem pratos suficientes na pilha.\n");
         return false;
     }
 
@@ -99,8 +104,8 @@ bool chamar_da_fila_de_espera(Restaurante *restaurante, Mesa *mesa) {
         return false;
     }
 
-    printf("• %d pessoa(s) do primeiro grupo pode(m) ocupar a mesa %d com a comanda %d.\n", pessoas, mesa->numero, mesa->comanda);
     ocupar_mesa(restaurante, mesa, pessoas);
+    printf("• %d pessoa(s) do primeiro grupo pode(m) ocupar a mesa %d com a comanda %d.\n", pessoas, mesa->numero, mesa->comanda);
 
     return true;
 }

@@ -104,7 +104,16 @@ void imprimir_fila(Fila *fila) {
         return;
     }
 
+    int numero_de_grupos = 0;
+    int numero_de_pessoas = 0;
+
     for (Grupo *grupo = fila->ini; grupo != NULL; grupo = grupo->prox) {
         printf("• Grupo %2d: %3d pessoa(s)\n", grupo->senha, grupo->pessoas);
+
+        numero_de_grupos++;
+        numero_de_pessoas += grupo->pessoas;
     }
+
+    printf("\n");
+    printf("• %d grupo(s) com um total de %d pessoa(s) aguarda(m) na fila de espera.\n", numero_de_grupos, numero_de_pessoas);
 }
