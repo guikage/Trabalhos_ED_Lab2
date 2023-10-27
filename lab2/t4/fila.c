@@ -26,7 +26,8 @@ int entrar_na_fila(Fila *fila, int pessoas){
     Grupo *n = (Grupo*)malloc(sizeof(Grupo));
     n->pessoas = pessoas;
     n->prox = NULL;
-    if(fila->fim == NULL){
+
+    if(fila_vazia(fila)) {
         n->senha = 1;
         fila->ini = n;
         fila->fim = n;
@@ -39,59 +40,57 @@ int entrar_na_fila(Fila *fila, int pessoas){
     return n->senha;
 }
 
-int retirar_pessoas_da_fila(Fila *fila, int pessoas){
+int retirar_pessoas_da_fila(Fila *fila, int maximo){
     //recebe a fila
     //retorna o numero de pessoas chamadas
     
-    int n = 0;
-    if(fila->ini != NULL){
-        if(fila->ini->pessoas <= pessoas){
-            n = fila->ini->pessoas;
-            sair_da_fila(fila, fila->ini->senha);
-        } else {
-            n = pessoas;
-            fila->ini->pessoas -= pessoas;
-        }
+    if(fila_vazia(fila)){
+        return 0; 
     }
-    return n;
+
+    if (fila->ini->pessoas > maximo) {
+        fila->ini->pessoas -= maximo;
+        return maximo;
+    }
+
+    int pessoas = fila->ini->pessoas;
+    sair_da_fila(fila, fila->ini->senha);
+
+    return pessoas;
 }
 
 bool sair_da_fila(Fila *fila, int senha){
     //recebe a fila e a senha do grupo que desistiu de esperar
     Grupo *p = fila->ini;
     Grupo *ant = NULL;
+    
     while(p != NULL && p->senha != senha){
         ant = p;
         p = p->prox;
     }
+
     if(p == NULL){
-        return 0;
+        return false;
     }
 
-    if(ant == NULL){
-        fila->ini = fila->ini->prox;
+    if(ant == NULL) {
+        fila->ini = p->prox;
+
         if (fila->ini == NULL) {
             fila->fim = NULL;
         }
     } else {
         ant->prox = p->prox;
+
         if(ant->prox == NULL){
             fila->fim = ant;
         }
     }
+
     free(p);
-    return 1;
+    
+    return true;
 }
-
-bool esta_na_fila(Fila *fila, int senha) {
-    for (Grupo *grupo = fila->ini; grupo != NULL; grupo = grupo->prox) {
-        if (grupo->senha == senha) {
-            return grupo;
-        }
-    }
-    return NULL;
-}
-
 
 bool fila_vazia(Fila *fila){
     if(fila->ini == NULL && fila->fim == NULL) return true;
