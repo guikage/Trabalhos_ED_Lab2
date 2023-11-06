@@ -144,7 +144,7 @@ void menu(Universidade *universidade) {
     imprimir_menu();
 
     do {
-        printf("$ O que você deseja fazer? ");
+        printf("\n$ O que você deseja fazer? ");
         scanf(" %c", &opcao);
 
         switch (opcao) {
@@ -178,7 +178,5 @@ void menu(Universidade *universidade) {
                 printf("! Opção inválida.\n");
                 break;
         }
-
-        printf("\n");
     } while (opcao != '0');
 }
