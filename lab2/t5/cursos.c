@@ -95,6 +95,18 @@ Curso *buscar_curso(Curso *arvore, int codigo) {
     return arvore;
 }
 
+void matricular_aluno(Curso *curso, int matricula, char *nome, int ano) {
+    curso->alunos = adicionar_aluno(curso->alunos, matricula, nome, ano);
+}
+
+void desmatricular_aluno(Curso *curso, int matricula) {
+    curso->alunos = remover_aluno(curso->alunos, matricula);
+}
+
+Aluno *buscar_matricula(Curso *curso, int matricula) {
+    return buscar_aluno(curso->alunos, matricula);
+}
+
 void imprimir_curso(Curso *curso) {
     printf("• %d: %s (%s)\n", curso->codigo, curso->nome, curso->centro);
 }
