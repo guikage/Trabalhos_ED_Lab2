@@ -147,7 +147,7 @@ void opcao_verificar_ocupacao(Restaurante *restaurante) {
         return;
     }
 
-    imprimir_mesa(mesa);
+    imprimir_mesa(restaurante->salao, mesa);
 }
 
 void menu(Restaurante *restaurante) {

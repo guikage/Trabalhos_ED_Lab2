@@ -38,13 +38,16 @@ Mesa *encontrar_mesa_por_numero(Salao *salao, int numero){
 
 void imprimir_salao(Salao *salao) {
     for(int i = 0; i < salao->linhas * salao->colunas; i++){
-        imprimir_mesa(&salao->mesas[i]);
+        imprimir_mesa(salao, &salao->mesas[i]);
         printf("\n");
     }
 }
 
-void imprimir_mesa(Mesa *mesa) {
-    printf("• Mesa %d\n", mesa->numero);
+void imprimir_mesa(Salao *salao, Mesa *mesa) {
+    int i = (mesa->numero - 1) / salao->colunas;
+    int j = (mesa->numero - 1) % salao->colunas; 
+
+    printf("• Mesa[%d][%d]: %d\n", i, j, mesa->numero);
     
     if (mesa->arrumada) {
         printf("  Estado:  Disponível\n");
