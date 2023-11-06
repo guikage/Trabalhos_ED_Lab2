@@ -25,7 +25,7 @@ Curso *perguntar_curso(Universidade *universidade) {
     Curso *curso = buscar_curso(universidade->cursos, codigo);
 
     if (curso == NULL) {
-        printf("! O curso com o código %d não foi encontrado.\n");
+        printf("! O curso com o código %d não foi encontrado.\n", codigo);
     }
 
     return curso;
@@ -42,10 +42,10 @@ void opcao_adicionar_curso(Universidade *universidade) {
     scanf("%d", &codigo);
 
     printf("- Nome:   ");
-    scanf(" %s", nome);
+    scanf(" %100[^\n]", nome);
 
     printf("- Centro: ");
-    scanf(" %s", centro);
+    scanf(" %100[^\n]", centro);
 
     universidade->cursos = adicionar_curso(universidade->cursos, codigo, nome, centro);
 
@@ -61,8 +61,8 @@ void opcao_remover_curso(Universidade *universidade) {
         return;
     }
 
-    universidade->cursos = remover_curso(universidade->cursos, curso->codigo);
     printf("! O curso com o código %d foi removido.\n", curso->codigo);
+    universidade->cursos = remover_curso(universidade->cursos, curso->codigo);
 }
 
 void opcao_matricular_aluno(Universidade *universidade) {
@@ -82,7 +82,7 @@ void opcao_matricular_aluno(Universidade *universidade) {
     scanf("%d", &matricula);
 
     printf("- Nome:      ");
-    scanf(" %s", nome);
+    scanf(" %100[^\n]", nome);
 
     printf("- Ano de Ingresso: ");
     scanf("%d", &ano_de_ingresso);

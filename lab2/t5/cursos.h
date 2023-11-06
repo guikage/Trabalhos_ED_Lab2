@@ -41,4 +41,4 @@ void imprimir_cursos(Curso *arvore);
 void imprimir_curso_com_alunos(Curso *curso);
 void imprimir_cursos_com_alunos(Curso *arvore);
 
-#endif _CURSOS_H_
+#endif

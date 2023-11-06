@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "cursos.h"
 
@@ -53,7 +54,7 @@ Curso *remover_curso(Curso *arvore, int codigo) {
         Curso *pai = arvore;
         Curso *atual = esquerda;
 
-        while (!arvore_vazia(atual->direita)) {
+        while (!cursos_vazio(atual->direita)) {
             pai = atual;
             atual = atual->direita;
         }
