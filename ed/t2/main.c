@@ -1,24 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "minheap.h"
 
-void op_1(MinHeap *h){
+#include "heap.h"
+
+void op_1(Heap *h){
     int v;
     printf("\nDigite o valor a ser inserido: ");
     scanf("%d", &v);
-    insert(h, v);
+    push_heap(h, v);
 }
 
-void op_2(MinHeap *h){
-    int v = pull(h);
+void op_2(Heap *h){
+    int v = pop_heap(h);
     printf("\nValor %d removido\n", v);
 }
 
-void op_3(MinHeap *h){
-    imprimeHeap(h, 0);
+void op_3(Heap *h){
+    print_heap(h);
 }
 
-int menu(MinHeap *h){
+int menu(Heap *h){
     int sel;
     printf("1: inserir\n2: remover\n3: imprimir\n0: sair\nDigite sua opcao: ");
     scanf("%d", &sel);
@@ -39,8 +40,18 @@ int menu(MinHeap *h){
     }
 }
 
+bool minimum_compare(int a, int b) {
+    return a >= b;
+}
+
+bool maximum_compare(int a, int b) {
+    return a <= b;
+}
+
 int main(){
-    MinHeap *h = criaMinHeap();
-    do{ }while(menu(h));
+    Heap heap = create_heap(maximum_compare);
+    print_heap(&heap);
+
+    do{ }while(menu(&heap));
     return 0;
 }
