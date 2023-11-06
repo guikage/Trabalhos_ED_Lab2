@@ -49,7 +49,7 @@ void opcao_adicionar_curso(Universidade *universidade) {
 
     universidade->cursos = adicionar_curso(universidade->cursos, codigo, nome, centro);
 
-    printf("! O curso com o código %d foi registrado.\n", codigo);
+    printf("! O curso %s foi oficialmente registrado.\n", nome);
 }
 
 void opcao_remover_curso(Universidade *universidade) {
@@ -61,7 +61,7 @@ void opcao_remover_curso(Universidade *universidade) {
         return;
     }
 
-    printf("! O curso com o código %d foi removido.\n", curso->codigo);
+    printf("! O curso %s foi removido.\n", curso->nome);
     universidade->cursos = remover_curso(universidade->cursos, curso->codigo);
 }
 
@@ -88,7 +88,7 @@ void opcao_matricular_aluno(Universidade *universidade) {
     scanf("%d", &ano_de_ingresso);
 
     matricular_aluno(curso, matricula, nome, ano_de_ingresso);
-    printf("! O aluno %s foi matriculado no curso %d.\n", nome, curso->codigo);
+    printf("! O aluno %s foi matriculado no curso %s.\n", nome, curso->nome);
 }
 
 void opcao_desmatricular_aluno(Universidade *universidade) {
@@ -108,12 +108,12 @@ void opcao_desmatricular_aluno(Universidade *universidade) {
     Aluno *aluno = buscar_aluno(curso->alunos, matricula);
 
     if (aluno == NULL) {
-        printf("! O aluno com a matrícula %d não está matriculado no curso %d.\n", matricula, curso->codigo);
+        printf("! O aluno com a matrícula %d não está matriculado no curso %s.\n", matricula, curso->nome);
         return;
     }
 
+    printf("! O aluno %s foi desmatriculado do curso %s.\n", aluno->nome, curso->nome);
     desmatricular_aluno(curso, matricula);
-    printf("! O aluno com a matrícula %d foi desmatriculado do curso %d.\n", matricula, curso->codigo);
 }
 
 void opcao_imprimir_matriculados_em_curso(Universidade *universidade) {
