@@ -14,7 +14,7 @@ bool cursos_vazio(Curso *arvore) {
 
 Curso *adicionar_curso(Curso *arvore, int codigo, char *nome, char *centro) {
     if (cursos_vazio(arvore)) {
-        Curso *curso = malloc(sizeof(Curso));
+        Curso *curso = (Curso *)malloc(sizeof(Curso));
 
         curso->codigo = codigo;
         strcpy(curso->nome, nome);

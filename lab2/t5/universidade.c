@@ -4,7 +4,7 @@
 
 Universidade *criar_universidade()
 {
-    Universidade *universidade = malloc(sizeof(Universidade));
+    Universidade *universidade = (Universidade *)malloc(sizeof(Universidade));
     universidade->cursos = criar_cursos();
 
     return universidade;
