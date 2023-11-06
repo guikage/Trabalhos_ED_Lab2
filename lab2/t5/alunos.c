@@ -18,19 +18,14 @@ Aluno *adicionar_aluno(Aluno *lista, int matricula, char *nome, int ano) {
     Aluno *anterior = NULL;
     Aluno *atual = lista;
 
-    while (atual != NULL) {
-        if (atual->matricula > novo->matricula) {
-            break;
-        }
-
+    while (atual != NULL && atual->matricula > novo->matricula) {
         anterior = atual;
         atual = atual->proximo;
     }
 
     novo->proximo = atual;
 
-    if (anterior == NULL)
-    {
+    if (anterior == NULL) {
         return novo;
     }
 
@@ -43,11 +38,7 @@ Aluno *remover_aluno(Aluno *lista, int matricula) {
     Aluno *anterior = NULL;
     Aluno *atual = lista;
 
-    while (atual != NULL) {
-        if (atual->matricula != matricula) {
-            break;
-        }
-
+    while (atual != NULL && atual->matricula != matricula) {
         anterior = atual;
         atual = atual->proximo;
     }
