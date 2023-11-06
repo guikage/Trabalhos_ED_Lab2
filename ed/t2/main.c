@@ -40,6 +40,23 @@ int menu(Heap *h){
     }
 }
 
+bool menu_min_ou_max(void){
+    char escolha;
+    printf("Digite + caso queira que o elemento com o maior valor seja o primeiro elemento da fila\n");
+    printf("Digite - caso queira que o elemento com o menor valor seja o primeiro elemento da fila\n");
+    do{
+        printf("Digite sua escolha aqui: ");
+        scanf("%c", &escolha);
+    } while (escolha != '+' && escolha != '-');
+    switch(escolha){
+        case '+':
+            return 1;
+        default:
+            return 0;
+    }
+}
+
+
 bool minimum_compare(int a, int b) {
     return a >= b;
 }
@@ -49,7 +66,11 @@ bool maximum_compare(int a, int b) {
 }
 
 int main(){
-    Heap heap = create_heap(maximum_compare);
+    Heap heap;
+    bool escolha = menu_min_ou_max();
+    if(escolha) heap = create_heap(maximum_compare);
+    else heap = create_heap(minimum_compare);
+
     print_heap(&heap);
 
     do{ }while(menu(&heap));
