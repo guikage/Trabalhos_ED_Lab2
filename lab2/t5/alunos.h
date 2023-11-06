@@ -20,7 +20,8 @@ Aluno *remover_aluno(Aluno *lista, int matricula);
 
 Aluno *buscar_aluno(Aluno *lista, int matricula);
 
-void desalocar_alunos_curso(Aluno *alunos);
+void liberar_alunos(Aluno *alunos);
+
 void imprimir_aluno(Aluno *aluno);
 void imprimir_alunos(Aluno *lista);
 

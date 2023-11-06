@@ -59,8 +59,9 @@ Aluno *remover_aluno(Aluno *lista, int matricula) {
     return lista;
 }
 
-void desalocar_alunos_curso(Aluno *alunos) {
+void liberar_alunos(Aluno *alunos) {
     Aluno *atual = alunos;
+    
     while (atual != NULL) {
         Aluno *prox = atual->proximo;
         free(atual);

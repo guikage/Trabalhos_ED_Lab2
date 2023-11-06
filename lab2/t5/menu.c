@@ -62,7 +62,6 @@ void opcao_remover_curso(Universidade *universidade) {
     }
 
     printf("! O curso com o código %d foi removido.\n", curso->codigo);
-    desalocar_alunos_curso(curso->alunos);
     universidade->cursos = remover_curso(universidade->cursos, curso->codigo);
 }
 

@@ -37,44 +37,50 @@ Curso *adicionar_curso(Curso *arvore, int codigo, char *nome, char *centro) {
     return arvore;
 }
 
+Curso *remover_raiz(Curso *arvore) {
+    Curso *esquerda = arvore->esquerda;
+    Curso *direita = arvore->direita;
+
+    liberar_alunos(arvore->alunos);
+
+    if (esquerda == NULL) {
+        free(arvore);
+        return direita;
+    }
+
+    Curso *pai = arvore;
+    Curso *atual = esquerda;
+
+    while (!cursos_vazio(atual->direita)) {
+        pai = atual;
+        atual = atual->direita;
+    }
+
+    if (pai != arvore) {
+        pai->direita = atual->esquerda;
+        atual->esquerda = pai->esquerda;
+    }
+
+    atual->direita = direita;
+
+    free(arvore);
+
+    return atual;
+}
+
 Curso *remover_curso(Curso *arvore, int codigo) {
     if (cursos_vazio(arvore)) {
         return NULL;
     }
 
-    Curso *esquerda = arvore->esquerda;
-    Curso *direita = arvore->direita;
-
     if (codigo == arvore->codigo) {
-        if (esquerda == NULL) {
-            free(arvore);
-            return direita;
-        }
-
-        Curso *pai = arvore;
-        Curso *atual = esquerda;
-
-        while (!cursos_vazio(atual->direita)) {
-            pai = atual;
-            atual = atual->direita;
-        }
-
-        if (pai != arvore) {
-            pai->direita = atual->esquerda;
-            atual->esquerda = pai->esquerda;
-        }
-
-        atual->direita = direita;
-
-        free(arvore);
-
-        return atual;
+        return remover_raiz(arvore);
     }
 
     if (codigo < arvore->codigo) {
-        arvore->esquerda = remover_curso(esquerda, codigo);
+        arvore->esquerda = remover_curso(arvore->esquerda, codigo);
     } else {
-        arvore->direita = remover_curso(direita, codigo);
+        arvore->direita = remover_curso(arvore->direita, codigo);
     }   
 
     return arvore;
