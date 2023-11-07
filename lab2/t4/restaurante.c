@@ -31,7 +31,7 @@ void ocupar_mesa(Restaurante *restaurante, Mesa *mesa, int pessoas) {
 
     if (excedentes > 0) {
         restaurante->pratos = empilhar_pratos(restaurante->pratos, excedentes);
-        printf("• %d pratos limpos excedentes foram retirados da mesa %d.\n", excedentes, mesa->numero);
+        printf("• %d prato(s) limpo(s) excedente(s) foram retirados da mesa %d.\n", excedentes, mesa->numero);
     }
 }
 

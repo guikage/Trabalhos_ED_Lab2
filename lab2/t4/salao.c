@@ -47,7 +47,8 @@ void imprimir_mesa(Salao *salao, Mesa *mesa) {
     int i = (mesa->numero - 1) / salao->colunas;
     int j = (mesa->numero - 1) % salao->colunas; 
 
-    printf("• Mesa[%d][%d]: %d\n", i, j, mesa->numero);
+    printf("• Mesa[%d][%d]\n", i, j);
+    printf("  Número:  %d\n", mesa->numero);
     
     if (mesa->arrumada) {
         printf("  Estado:  Disponível\n");
