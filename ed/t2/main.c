@@ -3,60 +3,6 @@
 
 #include "heap.h"
 
-void op_1(Heap *h){
-    int v;
-    printf("\nDigite o valor a ser inserido: ");
-    scanf("%d", &v);
-    push_heap(h, v);
-}
-
-void op_2(Heap *h){
-    int v = pop_heap(h);
-    printf("\nValor %d removido\n", v);
-}
-
-void op_3(Heap *h){
-    print_heap(h);
-}
-
-int menu(Heap *h){
-    int sel;
-    printf("1: inserir\n2: remover\n3: imprimir\n0: sair\nDigite sua opcao: ");
-    scanf("%d", &sel);
-    switch(sel){
-        case 0:
-            return 0;
-        case 1:
-            op_1(h);
-            return 1;
-        case 2:
-            op_2(h);
-            return 1;
-        case 3:
-            op_3(h);
-            return 1;
-        default:
-            return 1;
-    }
-}
-
-bool menu_min_ou_max(void){
-    char escolha;
-    printf("Digite + caso queira que o elemento com o maior valor seja o primeiro elemento da fila\n");
-    printf("Digite - caso queira que o elemento com o menor valor seja o primeiro elemento da fila\n");
-    do{
-        printf("Digite sua escolha aqui: ");
-        scanf("%c", &escolha);
-    } while (escolha != '+' && escolha != '-');
-    switch(escolha){
-        case '+':
-            return 1;
-        default:
-            return 0;
-    }
-}
-
-
 bool minimum_compare(int a, int b) {
     return a >= b;
 }
@@ -65,14 +11,93 @@ bool maximum_compare(int a, int b) {
     return a <= b;
 }
 
+void op_insert(Heap *heap) {
+    int v;
+    printf("Digite o valor a ser inserido: ");
+    scanf("%d", &v);
+    push_heap(heap, v);
+}
+
+void op_pop(Heap *heap) {
+    if (is_heap_empty(heap)) {
+        printf("O heap está vazio.\n");
+        return;
+    }
+
+    printf("O valor %d foi retirado.\n", pop_heap(heap));
+}
+
+void op_peek(Heap *heap) {
+    if (is_heap_empty(heap)) {
+        printf("O heap está vazio.\n");
+        return;
+    }
+
+    printf("O valor %d está no topo do heap.\n", peek_heap(heap));
+}
+
+void op_print(Heap *heap){
+    printf("Árvore:\n");
+    print_heap_tree(heap);
+
+    printf("\nVetor:\n");
+    print_heap_array(heap);
+}
+
+Heap ask_heap_ordering() {
+    char option;
+
+    printf("Tipos de heaps:\n");
+    printf("a) Max-heap: o primeiro elemento possui maior valor.\n");
+    printf("b) Min-heap: o primeiro elemento possui menor valor.\n");
+
+    printf("\nQual tipo de heap você deseja? ");
+    scanf(" %c", &option);
+
+    if (option == 'a') {
+        return create_heap(maximum_compare);
+    }
+
+    return create_heap(minimum_compare);
+}
+
+
 int main(){
-    Heap heap;
-    bool escolha = menu_min_ou_max();
-    if(escolha) heap = create_heap(maximum_compare);
-    else heap = create_heap(minimum_compare);
+    Heap heap = ask_heap_ordering();
 
-    print_heap(&heap);
+    printf("\n> Menu:\n");
+    printf("  a. inserir\n");
+    printf("  b. remover\n");
+    printf("  c. consultar\n");
+    printf("  d. imprimir árvore e vetor\n");
+    printf("  0. sair\n");
 
-    do{ }while(menu(&heap));
+    char option;
+
+    do {
+        printf("\n> O que você deseja fazer? ");
+        scanf(" %c", &option);
+
+        switch (option) {
+            case 'a':
+                op_insert(&heap);
+                break;
+            case 'b':
+                op_pop(&heap);
+                break;
+            case 'c':
+                op_peek(&heap);
+                break;
+            case 'd':
+                op_print(&heap);
+                break;
+            case '0':
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opção inválida.\n");
+        }
+    } while (option != '0');
+
     return 0;
 }

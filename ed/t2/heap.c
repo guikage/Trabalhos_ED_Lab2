@@ -3,19 +3,9 @@
 
 #include "heap.h"
 
-const int INITIAL_CAPACITY = 15;
+const int INITIAL_CAPACITY = 7;
 
 #define MAX(a, b) (a) > (b) ? (a) : (b)
-
-Heap create_heap(bool (*compare)(int, int)) {
-    Heap heap;
-    heap.array = (int*)malloc(sizeof(int) * INITIAL_CAPACITY);
-    heap.capacity = INITIAL_CAPACITY;
-    heap.size = 0;
-    heap.compare = compare;
-
-    return heap;
-}
 
 void swap(int *a, int *b){
     int temp = *a;
@@ -40,6 +30,20 @@ void ensure_capacity(Heap *heap, int new_size) {
     heap->capacity = new_capacity;
 }
 
+Heap create_heap(bool (*compare)(int, int)) {
+    Heap heap;
+    heap.array = (int*)malloc(sizeof(int) * INITIAL_CAPACITY);
+    heap.capacity = INITIAL_CAPACITY;
+    heap.size = 0;
+    heap.compare = compare;
+
+    return heap;
+}
+
+bool is_heap_empty(Heap *heap) {
+    return heap->size == 0;
+}
+
 void push_heap(Heap *heap, int value) {
     ensure_capacity(heap, heap->size + 1);
 
@@ -50,7 +54,7 @@ void push_heap(Heap *heap, int value) {
 
     heap->array[i] = value;
 
-    while (i != parent && heap->compare(heap->array[parent], heap->array[i])) {
+    while (i != 0 && heap->compare(heap->array[parent], heap->array[i])) {
         swap(&heap->array[i], &heap->array[parent]);
         i = parent;
         parent = get_parent_node(i);
@@ -64,9 +68,10 @@ int pop_heap(Heap *heap) {
     swap(&heap->array[0], &heap->array[heap->size]);
     
     int i = 0;
-    int minimum = i;
     
-    while(i < heap->size) {
+    while (true) {
+        int minimum = i;
+
         int left = get_left_node(i);
         int right = get_right_node(i);
     
@@ -81,17 +86,15 @@ int pop_heap(Heap *heap) {
         if (i == minimum) {
             break;
         }
-    
+
         swap(&heap->array[i], &heap->array[minimum]);
-        
-        i = minimum;
     }
 
     return value;
 }
 
-bool is_heap_empty(Heap *heap) {
-    return heap->size == 0;
+int peek_heap(Heap *heap) {
+    return heap->array[0];
 }
 
 int log2i(int n) {
@@ -115,7 +118,7 @@ void print_repeated(const char *text, int n) {
     }
 }
 
-void print_heap(Heap *heap) {
+void print_heap_tree(Heap *heap) {
     int maximum_depth = log2i(heap->size + 1);
 
     int layer_index = 0;
@@ -164,6 +167,16 @@ void print_heap(Heap *heap) {
 
         layer_index += layer_nodes;
         layer_nodes *= 2;
+    }
+}
+
+void print_heap_array(Heap *heap) {
+    for (int i = 0; i < heap->size; i++) {
+        printf("%03d ", heap->array[i]);
+    }
+
+    for (int i = heap->size; i < heap->capacity; i++) {
+        printf("*** ");
     }
 }
  

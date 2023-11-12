@@ -29,11 +29,14 @@ typedef struct heap
 
 Heap create_heap(bool (*compare)(int, int));
 
+bool is_heap_empty(Heap *heap);
+
 void push_heap(Heap *heap, int value);
 int pop_heap(Heap *heap);
+int peek_heap(Heap *heap);
 
-void print_heap(Heap *heap);
+void print_heap_tree(Heap *heap);
+void print_heap_array(Heap *heap);
 
-bool is_heap_empty(Heap *heap);
 
 #endif
