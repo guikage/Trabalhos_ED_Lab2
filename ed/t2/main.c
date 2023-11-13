@@ -66,10 +66,10 @@ int main(){
     Heap heap = ask_heap_ordering();
 
     printf("\n> Menu:\n");
-    printf("  a. inserir\n");
-    printf("  b. remover\n");
-    printf("  c. consultar\n");
-    printf("  d. imprimir árvore e vetor\n");
+    printf("  1. inserir\n");
+    printf("  2. remover\n");
+    printf("  3. imprimir\n");
+    printf("  4. espiar topo\n");
     printf("  0. sair\n");
 
     char option;
@@ -79,17 +79,17 @@ int main(){
         scanf(" %c", &option);
 
         switch (option) {
-            case 'a':
+            case '1':
                 op_insert(&heap);
                 break;
-            case 'b':
+            case '2':
                 op_pop(&heap);
                 break;
-            case 'c':
-                op_peek(&heap);
-                break;
-            case 'd':
+            case '3':
                 op_print(&heap);
+                break;
+            case '4':
+                op_peek(&heap);
                 break;
             case '0':
                 printf("Saindo...\n");
