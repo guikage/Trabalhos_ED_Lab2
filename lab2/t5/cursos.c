@@ -58,7 +58,7 @@ Curso *remover_raiz(Curso *arvore) {
 
     if (pai != arvore) {
         pai->direita = atual->esquerda;
-        atual->esquerda = pai->esquerda;
+        atual->esquerda = esquerda;
     }
 
     atual->direita = direita;
