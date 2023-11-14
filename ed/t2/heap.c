@@ -88,6 +88,8 @@ int pop_heap(Heap *heap) {
         }
 
         swap(&heap->array[i], &heap->array[minimum]);
+
+        i = minimum;
     }
 
     return value;
